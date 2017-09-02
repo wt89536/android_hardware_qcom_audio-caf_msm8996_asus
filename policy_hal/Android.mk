@@ -40,6 +40,7 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_STATIC_LIBRARIES := \
     libmedia_helper \
+    libbase
 
 LOCAL_CFLAGS += -Wall -Werror
 LOCAL_CLANG_CFLAGS += -Wno-overloaded-virtual -Wno-unused-variable -Wno-unused-private-field 
