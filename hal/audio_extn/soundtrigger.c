@@ -97,7 +97,8 @@ get_sound_trigger_info(int capture_handle)
     return NULL;
 }
 
-void stdev_snd_mon_cb(void * stream __unused, struct str_parms * parms)
+#ifdef SND_MONITOR_ENABLED
+static void stdev_snd_mon_cb(void * stream __unused, struct str_parms * parms)
 {
     if (!parms)
         return;
@@ -105,6 +106,7 @@ void stdev_snd_mon_cb(void * stream __unused, struct str_parms * parms)
     audio_extn_sound_trigger_set_parameters(NULL, parms);
     return;
 }
+#endif
 
 int audio_hw_call_back(sound_trigger_event_type_t event,
                        sound_trigger_event_info_t* config)
@@ -435,8 +437,9 @@ int audio_extn_sound_trigger_init(struct audio_device *adev)
 
     st_dev->adev = adev;
     list_init(&st_dev->st_ses_list);
+#ifdef SND_MONITOR_ENABLED
     audio_extn_snd_mon_register_listener(st_dev, stdev_snd_mon_cb);
-
+#endif
     return 0;
 
 cleanup:
