@@ -818,7 +818,7 @@ int disable_audio_route(struct audio_device *adev,
 
     if (tfa_count <= 0) {
         tfa_count = 0;
-        controlSpeakerAmp(false);
+        //controlSpeakerAmp(false);
     }
 #endif // ENABLE_TFA98XX
 
